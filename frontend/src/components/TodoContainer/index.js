@@ -33,7 +33,7 @@ export default class TodoContainer extends Component {
     render() {
         return (
             <div className="TodoContainer">
-                It's container
+                制定你的TodoList吧!
                 <TodoInput addTodoItem={this.addTodoItem}/>
                 {this.state.list.map((item, idx) =>
                     <TodoItem
