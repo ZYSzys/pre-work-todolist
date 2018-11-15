@@ -1,0 +1,8 @@
+.TodoInput {
+    padding: 20px;
+}
+
+.TodoInput-Input {
+    display: inline;
+    margin-right: 20px;
+}

@@ -1,0 +1,13 @@
+.TodoItem {
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.TodoItem-Span {
+    float: left;
+    margin-right: 20px;
+}
+
+.TodoItem-Button {
+    float: right;
+}
