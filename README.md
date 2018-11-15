@@ -1,5 +1,6 @@
 # pre-work-todolist
-A pre-work-todolist for internship.
+[![Travis CI](https://travis-ci.com/ZYSzys/pre-work-todolist.svg?token=hDbx4fFbLLvMJQybMquv&branch=master)](https://travis-ci.com/ZYSzys/pre-work-todolist)
+> A pre-work-todolist for internship.
 
 ## Install
 ```sh
