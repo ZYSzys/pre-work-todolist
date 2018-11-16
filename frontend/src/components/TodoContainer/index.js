@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem';
-import FilterTabs from './FilterTabs';
+import FilterButtons from './FilterButtons';
 import './index.css';
 
-export default class TodoContainer extends Component {
+class TodoContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,8 @@ export default class TodoContainer extends Component {
                     todo: '打豆豆',
                     completed: false
                 }
-            ]
+            ],
+            status: 'all'
         }
     };
 
@@ -45,34 +46,64 @@ export default class TodoContainer extends Component {
         });
     };
 
-    showAll = () => {
+    changeTodo = (toggled, newTodo) => {
+        // eslint-disable-next-line
+        this.state.list.map((todo, index) => {
+            if (toggled === index)
+                todo.todo = newTodo;
+        });
+    };
 
+    showAll = () => {
+        this.setState(({status}) => ({
+            status: 'all'
+        }));
     };
 
     showCompleted = () => {
-        this.setState(({list}) => ({
-            list: list.filter((item, index) => item.completed === true)
+        this.setState(({status}) => ({
+            status: 'completed'
         }));
     };
 
     showUncompleted = () => {
-
+        this.setState(({status}) => ({
+            status: 'uncompleted'
+        }));
     };
 
     render() {
+        const finalList = this.state.list.filter((item, index) => {
+            switch (this.state.status) {
+                case 'completed':
+                    return item.completed;
+                case 'uncompleted':
+                    return !item.completed;
+                default:
+                    return true;
+            }
+        });
+
         return (
             <div className="TodoContainer">
                 制定你的TodoList吧!
                 <TodoInput addTodoItem={this.addTodoItem} />
-                {this.state.list.map((item, idx) =>
+                {finalList.map((item, idx) =>
                     <TodoItem
                         key={idx}
-                        item={item.todo}
+                        item={item}
                         deleteTodoItem={this.deleteTodoItem.bind(this, idx)}
                         toggleTodo={this.toggleTodo.bind(this, idx)}
+                        changeTodo={this.changeTodo.bind(this, idx)}
                     />)}
-                <FilterTabs showCompleted={this.showCompleted.bind(this)}/>
+                <FilterButtons
+                    showAll={this.showAll}
+                    showCompleted={this.showCompleted.bind(this)}
+                    showUncompleted={this.showUncompleted}
+                />
             </div>
         )
     };
 }
+
+export default TodoContainer;

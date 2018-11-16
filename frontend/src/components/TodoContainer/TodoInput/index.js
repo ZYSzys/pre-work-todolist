@@ -30,8 +30,9 @@ export default class TodoInput extends Component {
         return (
             <div className="TodoInput">
                 <input
-                    className="form-control TodoInput-Input"
                     type="text"
+                    placeholder="输入下一个 todo 任务"
+                    className="form-control TodoInput-Input"
                     ref="isEditing"
                     onKeyPress={this.pressEnter}
                 />

@@ -1,10 +1,9 @@
 .TheHeader {
     text-align: center;
-
+    margin: 30px;
 }
 
 .TheHeader h1 {
     font-size: 70px;
-    color: rgba(175, 47, 47, 0.4);
-    margin: 20px;
+    color: lightseagreen;
 }

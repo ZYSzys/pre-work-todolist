@@ -9,6 +9,19 @@
 .TodoItem-Checkbox {
     text-align: center;
     width: 4%;
+    margin: auto 0;
+    border: none;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.TodoItem-Checkbox:after {
+    content: url('../../../assets/undone.svg')
+}
+
+.TodoItem-Checkbox:checked:after {
+    content: url('../../../assets/done.svg')
 }
 
 .TodoItem-Completed {
