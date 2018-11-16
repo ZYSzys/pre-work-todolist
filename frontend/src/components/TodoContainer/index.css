@@ -5,9 +5,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
 
-  width: 600px;
+  width: 80%;
   margin: 0 auto;
   box-shadow: 0 0 5px #666;
+  border-radius: 4%;
   animation: up 1s;
 }
 

@@ -1,0 +1,12 @@
+.TodoInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.TodoInput-Input {
+    margin-right: 20px;
+    width: 50%;
+}

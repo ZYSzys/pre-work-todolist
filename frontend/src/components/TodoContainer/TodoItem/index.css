@@ -1,0 +1,34 @@
+.TodoItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.TodoItem-Checkbox {
+    text-align: center;
+    width: 4%;
+}
+
+.TodoItem-Completed {
+    text-decoration: line-through;
+}
+
+.TodoItem-Span {
+    width: 70%;
+    height: 40px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5%;
+    box-shadow: 1px 1px 1px lightgrey;
+    padding: 5px;
+    margin-right: 20px;
+    font-size: 24px;
+}
+
+.TodoItem-Button {
+    margin-right: 5px;
+    background: #cd0000;
+}
