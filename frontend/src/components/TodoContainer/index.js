@@ -38,6 +38,7 @@ export default class TodoContainer extends Component {
     };
 
     toggleTodo = (toggled) => {
+        // eslint-disable-next-line
         this.state.list.map((todo, index) => {
             if (toggled === index)
                 todo.completed = !todo.completed;
