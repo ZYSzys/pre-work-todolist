@@ -45,3 +45,8 @@
     margin-right: 5px;
     background: #cd0000;
 }
+
+.modal-body {
+    height: 250px;
+    width: 400px;
+}

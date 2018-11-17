@@ -13,14 +13,13 @@ class TodoItem extends Component {
         this.setState(({ completed }) => ({
             completed: !completed
         }));
-        this.props.toggleTodo(this.state.completed);
+        this.props.toggleTodo();
     };
 
     changeTodo = () => {
         const newTodo = this.refs.isChanging.value;
-        console.log(`${newTodo}`);
-        //this.props.item.todo = newTodo;
         this.props.changeTodo(newTodo);
+        this.refs.isChanging.value = "";
     };
 
     render() {
@@ -33,17 +32,18 @@ class TodoItem extends Component {
                     checked={this.props.item.completed ? true : false}
                     onChange={()=>{}}
                 />
-                <input
+                <span
                     className={`form-control TodoItem-Span ${
                         this.props.item.completed ? "TodoItem-Completed" : ""
                     }`}
-                    value={this.props.item.todo}
-                    onChange={this.changeTodo}
-                />
+                >
+                {this.props.item.todo}
+                </span>
                 <button
                     data-toggle="modal"
                     data-target="#myModal"
                     className="btn btn-info"
+                    onClick={this.props.startChangeTodo}
                 >
                     编辑
                 </button>
@@ -76,12 +76,13 @@ class TodoItem extends Component {
                                     编辑 Todo 内容
                                 </h4>
                             </div>
-                            <input
+                            <textarea
                                 type="text"
                                 className="modal-body"
                                 placeholder="请输入新 Todo"
                                 ref="isChanging"
-                            />
+                            >
+                            </textarea>
                             <div className="modal-footer">
                                 <button
                                     type="button"

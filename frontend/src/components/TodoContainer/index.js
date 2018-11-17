@@ -46,12 +46,20 @@ class TodoContainer extends Component {
         });
     };
 
-    changeTodo = (toggled, newTodo) => {
-        // eslint-disable-next-line
-        this.state.list.map((todo, index) => {
-            if (toggled === index)
-                todo.todo = newTodo;
-        });
+    startChangeTodo = (toggled) => {
+        this.setState(({ isChanging }) => ({
+            isChanging: toggled
+        }));
+    };
+
+    changeTodo = (newTodo) => {
+        const index = this.state.isChanging
+        const newList = this.state.list;
+        newList[index].todo = newTodo;
+
+        this.setState(({list}) => ({
+            list: newList
+        }));
     };
 
     showAll = () => {
@@ -91,14 +99,17 @@ class TodoContainer extends Component {
                 {finalList.map((item, idx) =>
                     <TodoItem
                         key={idx}
+                        index={idx}
                         item={item}
                         deleteTodoItem={this.deleteTodoItem.bind(this, idx)}
                         toggleTodo={this.toggleTodo.bind(this, idx)}
-                        changeTodo={this.changeTodo.bind(this, idx)}
+
+                        startChangeTodo={this.startChangeTodo.bind(this, idx)}
+                        changeTodo={this.changeTodo}
                     />)}
                 <FilterButtons
                     showAll={this.showAll}
-                    showCompleted={this.showCompleted.bind(this)}
+                    showCompleted={this.showCompleted}
                     showUncompleted={this.showUncompleted}
                 />
             </div>
