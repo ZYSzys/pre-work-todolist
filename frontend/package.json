@@ -2,7 +2,7 @@
   "name": "pre-work-todolist",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://ZYSzys.github.io/pre-work-todolist",
+  "homepage": "http://ZYSzys.github.io/pre-work-todolist",
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -12,6 +12,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "prettier --write **/*.js **/**/**/*.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -22,5 +23,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "1.15.2"
+  }
 }
