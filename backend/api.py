@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.http import Http404
