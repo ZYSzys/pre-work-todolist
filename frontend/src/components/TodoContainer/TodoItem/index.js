@@ -37,7 +37,10 @@ class TodoItem extends Component {
                         this.props.item.completed ? "TodoItem-Completed" : ""
                     }`}
                 >
-                {this.props.item.todo}
+                    {this.props.item.todo}
+                </span>
+                <span style={{fontSize: 15}}>
+                    {this.props.item.expireDate}
                 </span>
                 <button
                     data-toggle="modal"
