@@ -8,11 +8,11 @@ export function getTD() {
     });
 };
 
-export function addTD({todo, completed}) {
+export function addTD({todo, completed, expireDate}) {
     return request({
         url: '/todo/add',
         method: 'post',
-        data: stringify({todo, completed})
+        data: stringify({todo, completed, expireDate})
     });
 };
 

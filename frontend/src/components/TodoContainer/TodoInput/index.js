@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './index.css'
 
 export default class TodoInput extends Component {
@@ -26,8 +27,9 @@ export default class TodoInput extends Component {
         e.preventDefault();
 
         const todo = this.refs.isEditing.value;
+        const expireDate = this.state.expireDate;
         if (this.validateTodo(todo)) {
-            this.props.addTodoItem(todo, 0);
+            this.props.addTodoItem(todo, 0, expireDate);
             this.refs.isEditing.value = '';
         }
     };
@@ -53,7 +55,7 @@ export default class TodoInput extends Component {
                 <DatePicker
                     className="TodoInput-Picker form-control"
                     selected={this.state.expireDate}
-                    onchange={this.handleChange}
+                    onChange={this.handleChange}
                 />
                 <button
                     className="btn btn-primary"
