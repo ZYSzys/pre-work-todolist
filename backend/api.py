@@ -3,45 +3,25 @@ from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.http import Http404
-from .models import Todo, TodoSerializer
+from .models import Todo
 
-# import json
 from django.core import serializers
-from rest_framework.renderers import JSONRenderer
+#import json
+#from rest_framework.renderers import JSONRenderer
 
-def response_as_json(data, foreign_penetrate=False):
-    jsonString = JSONRenderer().render(data)
-    print(jsonString)
-    jsonString = serializers.serialize('json',jsonString)
-    print(jsonString)
-    # jsonString = serializer(data=data, output_type="json", foreign=foreign_penetrate)
-    #print(data)
-    #print(jsonString)
-    response = HttpResponse(
-        #json.dumps(data),
-        jsonString,
-        content_type="application/json",
-    )
-    # Don't need this since we used corsheader
-    # response["Access-Control-Allow-Origin"] = "*"
+def jsonResponse(data, status_code=200):
+    response = HttpResponse(data, content_type="application/json")
+    response.status_code = status_code
     return response
-
-def json_response(data, code=200, foreign_penetrate=False, **kwargs):
-    #print(data)
-    '''data = {
-        "code": code,
-        "msg": "OK",
-        "data": data
-    }'''
-    return HttpResponse(data, content_type="application/json") #response_as_json(data, foreign_penetrate=foreign_penetrate)
 
 
 def index(request):
     todos = Todo.objects.all()
     data = serializers.serialize('json',todos)
-    #serializers.serialize("json", data)
-    #print(data)
-    return json_response(data)
+
+    print(data)
+    response = jsonResponse(data)
+    return response
 
 def add(request):
     if request.method == 'POST':
@@ -51,18 +31,45 @@ def add(request):
         newTodo = Todo(user=user, todo=todo, completed=completed)
         newTodo.save()
 
-        return json_response('OK')
+        return jsonResponse('OK')
     else:
-        return json_response('NO...', 404)
+        raise Http404 #jsonResponse('NO', 404)
 
-def delete(request, id=''):
-    return
+
+def delete(request):
+    id = request.POST['id']
+    todos = Todo.objects.all()
+    print(todos)
+    try:
+        todo = Todo.objects.get(id=id)
+        todo.delete()
+        print(todo)
+    except Exception:
+        raise Http404
+        return HttpResponseRedirect('/todo/')
+    return jsonResponse('OK')
 
 
 def toggle(request):
-    return
+    id = request.POST['id']
+    todo = Todo.objects.get(id=id)
+    todo.completed ^= 1
+    todo.save()
+    return jsonResponse('OK')
 
 
 def change(request):
-    return
+    id = request.POST['id']
+    if request.method == 'POST':
+        try:
+            todo = Todo.objects.get(id=id)
+        except Exception:
+            raise Http404
+
+        todo.todo = request.POST['todo']
+        todo.completed = request.POST['completed']
+        todo.save()
+        return jsonResponse('OK')
+    else:
+        raise Http404
 

@@ -9,10 +9,9 @@ service.defaults.withCredentials = true;
 service.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
 service.interceptors.response.use(
-    response => {
-        console.log(response);
-        const res = response.data;
-        if (res.code === 0) {
+    res => {
+        console.log(res);
+        if (res.status === 200) {
             return res.data;
         } else {
             return res;

@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from rest_framework import serializers
 
 
 class Todo(models.Model):
@@ -16,10 +15,3 @@ class Todo(models.Model):
 
     class Meta:
         ordering = ['date']
-
-
-class TodoSerializer(serializers.Serializer):
-    # user = serializers.CharField(User)
-    #todo = serializers.CharField(max_length=50)
-    completed = serializers.CharField(max_length=2)
-    date = serializers.DateTimeField()
