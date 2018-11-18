@@ -5,20 +5,46 @@
 
 > A pre-work-todolist for internship.
 
+- [增加一个待办事项](#增加一个待办事项)
+- [删除一个待办事项](#删除一个待办事项)
+- [标记一个待办事项为已完成](#标记一个待办事项为已完成)
+- [编辑一个待办事项的具体内容](#编辑一个待办事项的具体内容)
+- [列出所有的待办事项](#列出所有的待办事项)
+
+
 ## Install
 ```sh
 # backend
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 
-# front end
-cd frontend && yarn install
+# frontend
+$ cd frontend && yarn install
 ```
 
 ## Run
 ```sh
 # backend
-./manage.py runserver
+$ ./manage.py makemigrations backend
+$ ./manage.py migrate
+$ ./manage.py createsuperuser
+$ ./manage.py runserver
 
 # frontend
 yarn start
 ```
+
+
+### 增加一个待办事项
+![](/screenshot/1.gif)
+
+### 删除一个待办事项
+![](/screenshot/2.gif)
+
+### 标记一个待办事项为已完成
+![](/screenshot/3.gif)
+
+### 编辑一个待办事项的具体内容
+![](/screenshot/4.gif)
+
+### 列出所有的待办事项
+![](/screenshot/5.gif)

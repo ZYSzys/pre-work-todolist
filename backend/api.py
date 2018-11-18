@@ -37,13 +37,12 @@ def add(request):
 
 
 def delete(request):
-    id = request.POST['id']
-    todos = Todo.objects.all()
-    print(todos)
+    delTodo = request.POST['todo']
+    todo = Todo.objects.get(todo=delTodo)
+    print('need:delete', todo)
     try:
-        todo = Todo.objects.get(id=id)
         todo.delete()
-        print(todo)
+
     except Exception:
         raise Http404
         return HttpResponseRedirect('/todo/')
@@ -51,23 +50,24 @@ def delete(request):
 
 
 def toggle(request):
-    id = request.POST['id']
-    todo = Todo.objects.get(id=id)
-    todo.completed ^= 1
+    toggleTodo = request.POST['todo']
+    todo = Todo.objects.get(todo=toggleTodo)
+    todo.completed = str(int(todo.completed) ^ 1)
     todo.save()
     return jsonResponse('OK')
 
 
 def change(request):
-    id = request.POST['id']
+    changeTodo = request.POST['todo']
+    newTodo = request.POST['newTodo']
     if request.method == 'POST':
         try:
-            todo = Todo.objects.get(id=id)
+            todo = Todo.objects.get(todo=changeTodo)
         except Exception:
             raise Http404
 
-        todo.todo = request.POST['todo']
-        todo.completed = request.POST['completed']
+        todo.todo = newTodo
+        # todo.completed = request.POST['completed']
         todo.save()
         return jsonResponse('OK')
     else:
