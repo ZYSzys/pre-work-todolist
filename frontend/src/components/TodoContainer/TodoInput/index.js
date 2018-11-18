@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
 import './index.css'
 
 export default class TodoInput extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            expireDate: new Date()
+        };
+    };
+
+    handleChange = (date) => {
+        this.setState(({expireDate}) => ({
+            expireDate: date
+        }));
+    };
+
     pressEnter = e => {
         if (e.key === 'Enter') {
             this.saveTodoItem(e);
@@ -36,7 +50,17 @@ export default class TodoInput extends Component {
                     ref="isEditing"
                     onKeyPress={this.pressEnter}
                 />
-                <button className="btn btn-primary" onClick={this.saveTodoItem.bind(this)}>+</button>
+                <DatePicker
+                    className="TodoInput-Picker form-control"
+                    selected={this.state.expireDate}
+                    onchange={this.handleChange}
+                />
+                <button
+                    className="btn btn-primary"
+                    onClick={this.saveTodoItem.bind(this)}
+                >
+                    +
+                </button>
             </div>
         )
     };
