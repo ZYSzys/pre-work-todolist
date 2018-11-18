@@ -36,7 +36,7 @@ class TodoContainer extends Component {
         .then(res => {
             const getList = [];
             for(const item of res) {
-                getList.push({
+                getList.unshift({
                     todo: item.fields.todo,
                     completed: parseInt(item.fields.completed),
                     expireDate: formatDate(item.fields.date)
