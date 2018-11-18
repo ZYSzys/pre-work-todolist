@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "http://ZYSzys.github.io/pre-work-todolist",
   "dependencies": {
+    "axios": "0.18.0",
+    "qs": "6.5.2",
     "react": "^16.6.3",
     "react-datepicker": "2.0.0",
     "react-dom": "^16.6.3",
@@ -13,7 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "prettier --write **/*.js **/**/**/*.js",
+    "lint": "eslint --ext .js src",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -26,6 +28,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "eslint-config-react-app": "3.0.5",
     "prettier": "1.15.2"
   }
 }

@@ -4,38 +4,66 @@ import TodoItem from './TodoItem';
 import FilterButtons from './FilterButtons';
 import './index.css';
 
+import { getTD, addTD, deleteTD, toggleTD, changeTD } from '../../api';
+
 class TodoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [
+      /*
         {
           todo: '吃饭',
-          completed: false
+          completed: 0
         },
         {
           todo: '睡觉',
-          completed: false
+          completed: 0
         },
         {
           todo: '打豆豆',
-          completed: false
-        }
+          completed: 0
+        }*/
       ],
       status: 'all'
     };
-  }
+  };
+
+  componentDidMount() {
+    console.log('DidMount')
+    getTD()
+        .then(res => {
+            const getList = [];
+            for(const item of res) {
+                getList.push({
+                    todo: item.fields.todo,
+                    completed: parseInt(item.fields.completed)
+                });
+            }
+            this.setState(({list}) => ({
+                list: getList
+            }));
+        });
+  };
+
+  componentDidUpdate() {
+
+  };
 
   addTodoItem = (todo, completed) => {
     this.setState(({ list }) => ({
       list: [{ todo, completed }, ...list]
     }));
+    addTD({ todo, completed })
+        .then(res => console.log(`addTD: ${res}`));
   };
 
   deleteTodoItem = needDelete => {
     this.setState(({ list }) => ({
       list: list.filter((todo, index) => index !== needDelete)
     }));
+    const todo = this.state.list[needDelete].todo;
+    deleteTD({todo}).then(res => console.log(res));
   };
 
   toggleTodo = toggled => {
@@ -43,6 +71,8 @@ class TodoContainer extends Component {
     this.state.list.map((todo, index) => {
       if (toggled === index) todo.completed = !todo.completed;
     });
+    const todo = this.state.list[toggled].todo;
+    toggleTD({todo}).then(res => console.log(res));
   };
 
   startChangeTodo = toggled => {
@@ -54,11 +84,14 @@ class TodoContainer extends Component {
   changeTodo = newTodo => {
     const index = this.state.isChanging;
     const newList = this.state.list;
+    const todo = newList[index].todo;
     newList[index].todo = newTodo;
 
     this.setState(({ list }) => ({
       list: newList
     }));
+    console.log(todo, newTodo);
+    changeTD({todo, newTodo})
   };
 
   showAll = () => {

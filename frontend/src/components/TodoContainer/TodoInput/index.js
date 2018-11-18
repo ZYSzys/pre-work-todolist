@@ -27,7 +27,7 @@ export default class TodoInput extends Component {
 
         const todo = this.refs.isEditing.value;
         if (this.validateTodo(todo)) {
-            this.props.addTodoItem(todo, false);
+            this.props.addTodoItem(todo, 0);
             this.refs.isEditing.value = '';
         }
     };
