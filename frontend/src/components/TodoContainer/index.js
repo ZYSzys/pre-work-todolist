@@ -5,7 +5,7 @@ import FilterButtons from './FilterButtons';
 import './index.css';
 
 import { getTD, addTD, deleteTD, toggleTD, changeTD } from '../../api';
-import { formatDate } from '../../utils';
+import { formatDate, validateTodo } from '../../utils';
 
 class TodoContainer extends Component {
   constructor(props) {
@@ -53,6 +53,8 @@ class TodoContainer extends Component {
   };
 
   addTodoItem = (todo, completed, expireDate) => {
+    if (validateTodo(todo, this.state.list) === false) return;
+
     expireDate = formatDate(expireDate)
     this.setState(({ list }) => ({
       list: [{ todo, completed, expireDate}, ...list]
@@ -85,6 +87,8 @@ class TodoContainer extends Component {
   };
 
   changeTodo = newTodo => {
+    if (validateTodo(newTodo, this.state.list) === false) return;
+
     const index = this.state.isChanging;
     const newList = this.state.list;
     const todo = newList[index].todo;
