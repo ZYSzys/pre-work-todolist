@@ -18,8 +18,12 @@ class TodoItem extends Component {
 
     changeTodo = () => {
         const newTodo = this.refs.isChanging.value;
-        this.props.changeTodo(newTodo);
-        this.refs.isChanging.value = "";
+        if (newTodo === '') {
+            alert('请输入新 Todo!');
+        } else {
+            this.props.changeTodo(newTodo);
+            this.refs.isChanging.value = "";
+        }
     };
 
     render() {

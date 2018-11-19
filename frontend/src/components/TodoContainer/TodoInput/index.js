@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './index.css'
 
 export default class TodoInput extends Component {
@@ -57,7 +58,7 @@ export default class TodoInput extends Component {
                 />
                 <button
                     className="btn btn-primary"
-                    onClick={this.saveTodoItem.bind(this)}
+                    onClick={this.saveTodoItem}
                 >
                     +
                 </button>
