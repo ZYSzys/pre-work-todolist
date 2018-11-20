@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
+import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
-import './index.css'
+import './index.css';
+
+const options = [
+    {value: 'important', label: 'Important'},
+    {value: 'middle', label: 'Middle'},
+    {value: 'notInHurry', label: 'NotInHurry'}
+];
 
 export default class TodoInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            expireDate: new Date()
+            expireDate: new Date(),
+            importance: {value: 'middle', label: 'Middle'}
         };
     };
 
-    handleChange = (date) => {
+    setExpireDate = (date) => {
         this.setState(({expireDate}) => ({
             expireDate: date
+        }));
+    };
+
+    setImportance = (option) => {
+        this.setState(({importance}) => ({
+            importance: option
         }));
     };
 
@@ -27,8 +41,10 @@ export default class TodoInput extends Component {
         e.preventDefault();
 
         const todo = this.refs.isEditing.value;
-        const expireDate = this.state.expireDate;
-        this.props.addTodoItem(todo, 0, expireDate);
+        const { expireDate, importance } = this.state;
+        console.log(importance);
+
+        this.props.addTodoItem(todo, 0, expireDate, importance.value);
         this.refs.isEditing.value = '';
     };
 
@@ -45,11 +61,17 @@ export default class TodoInput extends Component {
                 <DatePicker
                     className="TodoInput-Picker form-control"
                     selected={this.state.expireDate}
-                    onChange={this.handleChange}
+                    onChange={this.setExpireDate}
+                />
+                <Select
+                    className="TodoInput-Select"
+                    value={this.state.importance}
+                    onChange={this.setImportance}
+                    options={options}
                 />
                 <button
                     className="btn btn-primary"
-                    onClick={this.saveTodoItem.bind(this)}
+                    onClick={this.saveTodoItem}
                 >
                     +
                 </button>

@@ -2,20 +2,6 @@ import React, { Component } from "react";
 import "./index.css";
 
 class TodoItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            completed: props.item.completed
-        };
-    }
-
-    toggleTodo = () => {
-        this.setState(({ completed }) => ({
-            completed: !completed
-        }));
-        this.props.toggleTodo();
-    };
-
     changeTodo = () => {
         const newTodo = this.refs.isChanging.value;
         this.props.changeTodo(newTodo);
@@ -28,7 +14,7 @@ class TodoItem extends Component {
                 <input
                     type="checkbox"
                     className="TodoItem-Checkbox"
-                    onClick={this.toggleTodo}
+                    onClick={this.props.toggleTodo}
                     checked={this.props.item.completed ? true : false}
                     onChange={()=>{}}
                 />
@@ -41,6 +27,9 @@ class TodoItem extends Component {
                 </span>
                 <span style={{fontSize: 15}}>
                     {this.props.item.expireDate}
+                </span>
+                <span style={{fontSize: 15, marginLeft: 15}}>
+                    {this.props.item.importance}
                 </span>
                 <button
                     data-toggle="modal"

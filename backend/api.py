@@ -26,8 +26,10 @@ def add(request):
         todo = request.POST['todo']
         completed = request.POST['completed']
         date = request.POST['expireDate']
+        importance = request.POST['importance']
+
         user = User.objects.get(id='1')
-        newTodo = Todo(user=user, todo=todo, completed=completed, date=date)
+        newTodo = Todo(user=user, todo=todo, completed=completed, date=date, importance=importance)
         newTodo.save()
 
         return jsonResponse('OK')
