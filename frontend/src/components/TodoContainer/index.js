@@ -14,6 +14,12 @@ class TodoContainer extends Component {
       list: [
       /*
         {
+          todo: item.fields.todo,
+          completed: parseInt(item.fields.completed),
+          expireDate: formatDate(item.fields.date),
+          importance: item.fields.importance
+        },
+        {
           todo: '吃饭',
           completed: 0
         },
@@ -39,7 +45,8 @@ class TodoContainer extends Component {
                 getList.unshift({
                     todo: item.fields.todo,
                     completed: parseInt(item.fields.completed),
-                    expireDate: formatDate(item.fields.date)
+                    expireDate: formatDate(item.fields.date),
+                    importance: item.fields.importance
                 });
             }
             this.setState(({list}) => ({
@@ -52,14 +59,15 @@ class TodoContainer extends Component {
 
   };
 
-  addTodoItem = (todo, completed, expireDate) => {
+  addTodoItem = (todo, completed, expireDate, importance) => {
     if (validateTodo(todo, this.state.list) === false) return;
 
-    expireDate = formatDate(expireDate)
+    expireDate = formatDate(expireDate);
+
     this.setState(({ list }) => ({
-      list: [{ todo, completed, expireDate}, ...list]
+      list: [{ todo, completed, expireDate, importance}, ...list]
     }));
-    addTD({ todo, completed, expireDate})
+    addTD({ todo, completed, expireDate, importance})
         .then(res => console.log(`addTD: ${res}`));
   };
 
@@ -73,9 +81,16 @@ class TodoContainer extends Component {
 
   toggleTodo = toggled => {
     // eslint-disable-next-line
-    this.state.list.map((todo, index) => {
-      if (toggled === index) todo.completed = !todo.completed;
+    const newList = this.state.list.map((todo, index) => {
+      if (toggled === index) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
     });
+    this.setState(({list}) => ({
+        list: newList
+    }));
+
     const todo = this.state.list[toggled].todo;
     toggleTD({todo}).then(res => console.log(res));
   };

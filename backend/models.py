@@ -9,3 +9,4 @@ class Todo(models.Model):
     todo = models.CharField(max_length=50)
     completed = models.CharField(max_length=2)
     date = models.CharField(max_length=10)
+    importance = models.CharField(max_length=10)

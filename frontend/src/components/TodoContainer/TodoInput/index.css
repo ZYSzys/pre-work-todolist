@@ -14,3 +14,9 @@
 .btn {
     margin-left: 20px;
 }
+
+.TodoInput-Select {
+    width: 100px;
+    font-size: 13px;
+    margin-left: 20px;
+}

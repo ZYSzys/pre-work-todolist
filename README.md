@@ -14,6 +14,7 @@
 - [编辑一个待办事项的具体内容](#编辑一个待办事项的具体内容)
 - [列出所有的待办事项](#列出所有的待办事项)
 - [待办事项可以设置expireDate](#待办事项可以设置expiredate)
+- [待办事项可以设置优先级](#待办事项可以设置优先级)
 
 
 ## Install
@@ -39,19 +40,25 @@ yarn start
 
 
 ### 增加一个待办事项
-![](/screenshot/1.gif)
+![](/screenshots/1.gif)
 
 ### 删除一个待办事项
-![](/screenshot/2.gif)
+![](/screenshots/2.gif)
 
 ### 标记一个待办事项为已完成
-![](/screenshot/3.gif)
+![](/screenshots/3.gif)
 
 ### 编辑一个待办事项的具体内容
-![](/screenshot/4.gif)
+![](/screenshots/4.gif)
 
 ### 列出所有的待办事项
-![](/screenshot/5.gif)
+![](/screenshots/5.gif)
 
 ### 待办事项可以设置expireDate
-![](/screenshot/6.gif)
+![](/screenshots/6.gif)
+
+### 待办事项可以设置优先级:
+- H(high)表示优先级最高
+- M(middle)表示优先级适中
+- L(low)表示优先级最底
+![](/screenshots/7.gif)

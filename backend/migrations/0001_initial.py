@@ -17,13 +17,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('todo', models.CharField(max_length=50)),
-                ('flag', models.CharField(max_length=2)),
-                ('priority', models.CharField(max_length=2)),
-                ('pubtime', models.DateTimeField(auto_now_add=True)),
+                ('completed', models.CharField(max_length=2)),
+                ('date', models.CharField(max_length=10)),
+                ('importance', models.CharField(max_length=10)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
-            options={
-                'ordering': ['priority', 'pubtime'],
-            },
         ),
     ]
