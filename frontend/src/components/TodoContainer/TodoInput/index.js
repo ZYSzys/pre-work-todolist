@@ -5,9 +5,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './index.css';
 
 const options = [
-    {value: 'important', label: 'Important'},
-    {value: 'middle', label: 'Middle'},
-    {value: 'notInHurry', label: 'NotInHurry'}
+    {value: 'important', label: 'H'},
+    {value: 'middle', label: 'M'},
+    {value: 'notInHurry', label: 'L'}
 ];
 
 export default class TodoInput extends Component {
@@ -15,7 +15,7 @@ export default class TodoInput extends Component {
         super(props);
         this.state = {
             expireDate: new Date(),
-            importance: {value: 'middle', label: 'Middle'}
+            importance: {value: 'middle', label: 'M'}
         };
     };
 
@@ -44,7 +44,7 @@ export default class TodoInput extends Component {
         const { expireDate, importance } = this.state;
         console.log(importance);
 
-        this.props.addTodoItem(todo, 0, expireDate, importance.value);
+        this.props.addTodoItem(todo, 0, expireDate, importance.label);
         this.refs.isEditing.value = '';
     };
 
