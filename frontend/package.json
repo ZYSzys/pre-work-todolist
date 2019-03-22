@@ -5,7 +5,7 @@
   "homepage": "http://ZYSzys.github.io/pre-work-todolist",
   "dependencies": {
     "axios": "0.18.0",
-    "qs": "6.6.0",
+    "qs": "6.7.0",
     "react": "^16.6.3",
     "react-datepicker": "2.0.0",
     "react-dom": "^16.6.3",
